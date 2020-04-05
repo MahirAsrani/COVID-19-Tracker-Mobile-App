@@ -1,10 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, Button} from 'react-native';
+import { StyleSheet, Text, View, Image} from 'react-native';
 
 export default function splash({ navigation }) {
-
     return (
-            <View style={styles.container}>
+        <View style={styles.container}>
                 <Image 
                 source={require('../assets/corona.jpg')} 
                 resizeMode="cover" style={styles.img} />
@@ -25,22 +24,15 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#e3d4ff',
       alignItems: 'center',
-      alignContent: 'center',
-      padding: 0,
-      margin: 0
+      justifyContent: 'space-evenly',
     },
     img : {
         width: 350, 
         height: 350,
-        top: 90
     },
     txt : {
-        position: 'relative',
         textAlign: 'center',
         fontSize: 25,
-        width: 500,
-        top: 100,
-        lineHeight: 30,
         fontWeight: 'bold',
         color: '#3B318E'
     },
@@ -51,8 +43,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 100,
         fontSize: 25,
         borderRadius: 30,
-        position: 'absolute',
-        bottom: 100,
     }
 });
       

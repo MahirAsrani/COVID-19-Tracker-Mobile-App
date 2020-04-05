@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Platform, TextInput, TouchableOpacity, Image, ScrollView, KeyboardAvoidingView  } from 'react-native';
 
 export default class corona extends React.Component {
     constructor(props) {
@@ -54,7 +54,8 @@ export default class corona extends React.Component {
 
                 <View style={{flex:1, backgroundColor: '#3B318E'}}>
                     <View style={styles.top}>
-                        <View style={{marginTop:30, flexDirection: 'row' }}>
+                    <ScrollView> 
+                        <View style={{marginTop:25, flexDirection:'row', flexWrap:'wrap',justifyContent: 'space-evenly' }}>
                             
                             <View style={styles.box}>
                                 <Text style={styles.boxtext_res}>{this.state.country}</Text>
@@ -62,15 +63,11 @@ export default class corona extends React.Component {
                             </View>
                             
                             <View style={styles.box}>
-                            <ImageBackground style={styles.img} source={{uri: this.state.countryflag}}>
-                            </ImageBackground>
+                                <Image style={{width:100,height:50}} 
+                                source={{uri: this.state.countryflag}}/>
                                 <Text style={styles.boxtext}>Flag </Text>
                             </View>
-
-                        </View>
-
-                        <View style={{ flexDirection: 'row' }}>
-                            
+                           
                             <View style={styles.box}>
                                 <Text style={styles.boxtext_res}>{this.state.cases}</Text>
                                 <Text style={styles.boxtext}>Cases</Text>
@@ -81,10 +78,6 @@ export default class corona extends React.Component {
                                 <Text style={styles.boxtext}>Active</Text>
                             </View>
 
-                        </View>
-
-                        <View style={{ flexDirection: 'row' }}>
-                            
                             <View style={styles.box}>
                                 <Text style={styles.boxtext_res}>{this.state.deaths}</Text>
                                 <Text style={styles.boxtext}>Deaths</Text>
@@ -94,10 +87,6 @@ export default class corona extends React.Component {
                                 <Text style={styles.boxtext_res}>{this.state.recovered}</Text>
                                 <Text style={styles.boxtext}>Recovered</Text>
                             </View>
-
-                        </View>
-
-                        <View style={{ flexDirection: 'row' }}>
                             
                             <View style={styles.box}>
                                 <Text style={styles.boxtext_res}>{this.state.todayDeaths}</Text>
@@ -108,23 +97,23 @@ export default class corona extends React.Component {
                                 <Text style={styles.boxtext_res}>{this.state.todayCases}</Text>
                                 <Text style={styles.boxtext}>Today Cases</Text>
                             </View>
-
                         </View>
-                    
+                    </ScrollView>
                     </View>
-                    <View style={styles.bottom}>
-                        <TextInput 
-                            style={styles.input}
-                            onChangeText={(text) => this.setCountry(text)}
-                            placeholder="Country eg. India"
-                            placeholderTextColor="#ebe6e6" 
-                            />
-                        <TouchableOpacity style={styles.btn} onPress={() => this.COVID_19(this.state.value)}>
-                            <Text style={{color: "white", fontSize: 25}}>Fetch Data</Text>
-                        </TouchableOpacity>
 
-                        <Text style={styles.made}>Made with ❤ by Mahir Asrani</Text>
-                    </View>
+                        <View style={styles.bottom}>
+                            <TextInput 
+                                style={styles.input}
+                                onChangeText={(text) => this.setCountry(text)}
+                                placeholder="Country eg. India"
+                                placeholderTextColor="#ebe6e6" 
+                                />
+                            <TouchableOpacity style={styles.btn} onPress={() => this.COVID_19(this.state.value)}>
+                                <Text style={{color: "white", fontSize: 25}}>Fetch Data</Text>
+                            </TouchableOpacity>
+
+                            <Text style={{fontWeight:'bold'}}>Made with ❤ by Mahir Asrani</Text>
+                        </View>
                 </View>
                 
         )
@@ -133,9 +122,9 @@ export default class corona extends React.Component {
 
 const styles = StyleSheet.create({
     top: {
-      flex: 2,
+      flex: 2.5,
       backgroundColor: '#3B318E',
-      alignSelf: 'center',
+      alignItems: 'center',
     },
     bottom: {
       flex: 1,
@@ -143,55 +132,41 @@ const styles = StyleSheet.create({
       borderTopLeftRadius:  30,
       borderTopRightRadius: 30,
       alignItems: 'center',
+      justifyContent: 'space-evenly'
     },
     btn: {
         backgroundColor: '#39375b',
-        padding: 15,
+        padding: 13,
         paddingHorizontal: 100,
         borderRadius: 10,
     },
     input: {
         width: 320,
-        marginVertical: 30,
+        marginVertical: 15,
         padding: 10,
         paddingHorizontal: 20,
         fontSize: 25,
         borderStyle: 'solid',
         borderColor: '#39375b',
-        // borderRadius: 10,
-        // borderWidth: 1,
         borderBottomWidth: 1
     },
     box: {
-        flexDirection: 'column',
         backgroundColor: '#E0E2EB',
         width: 160,
         height: 100,
-        margin: 10, 
-        marginHorizontal: 15, 
-        justifyContent: 'center',
+        marginBottom: 25, 
+        justifyContent: 'space-evenly',
         borderRadius: 5,
+        alignItems: 'center',
     },
     boxtext: {
-        alignSelf: 'center',
         fontSize: 20,
         fontWeight: 'bold',
         color: '#2d132c'
     },
     boxtext_res: {
-        alignSelf: 'center',
         fontSize: 30,
         fontWeight: 'bold',
         color: '#464159'
-    },
-    img: {
-        alignSelf: 'center',
-        justifyContent: 'center',
-        width:100, 
-        height:50,
-    },
-    made: {
-        fontWeight: 'bold',
-        top: 50,
     },
 });
